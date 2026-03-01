@@ -39,9 +39,6 @@ from flask_cors import CORS
 import joblib
 import numpy as np
 import pandas as pd
-from sklearn.compose import ColumnTransformer
-from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import OneHotEncoder, MinMaxScaler
 import os, logging
 
 app = Flask(__name__)
@@ -100,7 +97,7 @@ clinical_insulin_cap = safe_load("clinical_insulin_cap.pkl")
 lifestyle_model      = safe_load("lifestyle_model.pkl")
 lifestyle_pipeline   = safe_load("lifestyle_pipeline.pkl")   # may fail on version mismatch
 
-
+'''
 # ─────────────────────────────────────────────────────────────
 # LIFESTYLE PIPELINE REBUILD
 # If the saved pipeline can't be loaded (sklearn version mismatch),
@@ -159,7 +156,7 @@ def _build_lifestyle_pipeline():
 if lifestyle_pipeline is None:
     lifestyle_pipeline = _build_lifestyle_pipeline()
 
-
+'''
 # ─────────────────────────────────────────────────────────────
 # CLINICAL PREPROCESSING
 # Mirrors your Colab exactly:
