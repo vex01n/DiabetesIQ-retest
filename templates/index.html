@@ -690,6 +690,111 @@ input[type="range"]::-webkit-slider-thumb:hover{transform:scale(1.4);}
   line-height:1.7;
   margin-top:14px;
 }
+
+/* ══════════════════════════════════════════
+   MOBILE RESPONSIVE
+   ══════════════════════════════════════════ */
+
+/* ── Tablet (≤768px) ── */
+@media(max-width:768px) {
+  .app { padding:20px 16px 100px; }
+  .header { margin-bottom:24px; gap:12px; }
+  .brand-name { font-size:1.4rem; }
+  .header-right { width:100%; justify-content:flex-start; }
+  .model-pill { font-size:0.6rem; padding:5px 10px; }
+
+  /* Tabs: sticky top bar, full width */
+  .tabs {
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:rgba(14,23,38,0.96);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--border);
+    border-radius:0;
+    margin-left:-16px;
+    margin-right:-16px;
+    margin-bottom:20px;
+    padding:6px 16px;
+    width:calc(100% + 32px);
+    border-left:none; border-right:none; border-top:none;
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:4px;
+  }
+  .tab { padding:10px 6px; font-size:0.7rem; text-align:center; letter-spacing:0.01em; }
+
+  .card { padding:18px 16px; border-radius:12px; }
+  .gauge-card { padding:20px 16px; }
+  .banner { font-size:0.6rem; padding:10px 14px; flex-wrap:wrap; }
+  .section-title { font-size:0.95rem; }
+
+  /* Combined two-col → single col */
+  .combined-body { grid-template-columns:1fr; }
+  .combined-col:first-child { border-right:none; border-bottom:1px solid var(--border); }
+  .combined-col { padding:14px 16px; }
+
+  .score-box { padding:12px 10px; }
+  .score-box-val { font-size:1.3rem; }
+
+  .gauge-wrap { width:160px; height:82px; margin-bottom:12px; }
+  .gauge-svg { width:160px; height:82px; }
+  .gauge-pct { font-size:2rem; }
+
+  .h-item { flex-direction:column; align-items:flex-start; gap:4px; }
+  .h-tag { align-self:flex-end; }
+}
+
+/* ── Mobile (≤480px) ── */
+@media(max-width:480px) {
+  .app { padding:16px 12px 90px; }
+  .tabs { margin-left:-12px; margin-right:-12px; width:calc(100% + 24px); padding:6px 12px; }
+  .tab { font-size:0.65rem; padding:9px 4px; }
+
+  .brand-name { font-size:1.2rem; }
+  .brand-sub { font-size:0.52rem; }
+  .model-pill { font-size:0.55rem; padding:4px 8px; }
+  .model-pill .dot { width:6px; height:6px; }
+
+  .card { padding:14px 12px; border-radius:10px; }
+  .card-label { font-size:0.55rem; margin-bottom:14px; }
+
+  .inputs-grid { gap:12px; }
+  input[type="number"] { padding:13px 12px; font-size:0.85rem; }
+  input[type="range"] { height:4px; margin-top:6px; }
+  input[type="range"].c::-webkit-slider-thumb,
+  input[type="range"].l::-webkit-slider-thumb { width:18px; height:18px; }
+
+  .toggles-grid { gap:7px; }
+  .toggle-field { padding:9px 12px; }
+  .toggle-name { font-size:0.66rem; }
+  .gender-btn { padding:11px 8px; font-size:0.72rem; }
+
+  .gauge-wrap { width:140px; height:72px; }
+  .gauge-svg { width:140px; height:72px; }
+  .gauge-pct { font-size:1.8rem; }
+  .gauge-lbl { font-size:0.52rem; }
+  .risk-badge { font-size:0.6rem; padding:4px 12px; }
+
+  .predict-btn { padding:14px; font-size:0.75rem; margin-top:18px; }
+  .reset-btn { padding:10px; font-size:0.65rem; }
+
+  .score-box-val { font-size:1.15rem; }
+  .score-box-label { font-size:0.5rem; }
+  .dual-scores { gap:8px; }
+
+  .bar-name { width:70px; font-size:0.53rem; }
+  .bar-pct { font-size:0.53rem; width:22px; }
+
+  .section-title { font-size:0.85rem; }
+  .banner { font-size:0.56rem; }
+  .disclaimer { font-size:0.52rem; }
+  .err-msg { font-size:0.58rem; }
+
+  /* Tooltips: stay on screen */
+  .tip:hover::after { left:0; transform:translateX(0); white-space:normal; width:150px; }
+}
 </style>
 </head>
 <body>
@@ -1122,7 +1227,7 @@ input[type="range"]::-webkit-slider-thumb:hover{transform:scale(1.4);}
 </div>
 
 <script>
-const API = 'http://localhost:5000';
+const API = window.location.origin;  // works both locally and on Vercel
 let genderVal = null;
 let genderValE = null;
 let histCnt = {c:0, l:0, e:0};
